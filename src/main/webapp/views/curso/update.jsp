@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -5,20 +7,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-   <link rel="stylesheet" type="text/css" href="../../assets/css/index.css"/>
+   <link rel="stylesheet" type="text/css" href="./assets/css/index.css"/>
  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-<title>Trampo 360::Criar Aluno</title>     
+<title>Trampo 360 :: Atualizar Curso</title>     
     
 </head>
 
-<body>
-    <!--Começo Nav bar---->
-
-    <main>
+<main>
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand active" href="index.html">
-                <img src="../../assets/img/logo.stext.png" width="60" height="50" class="d-inline-block align-top" alt="">
+                <img src="./assets/img/logo.stext.png" width="60" height="50" class="d-inline-block align-top" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -52,49 +51,42 @@
             </div>
         </div>
     </nav>
-
-     <header class="tag">
-            <h1 class="container">Criar Aluno</h1>
+        <header class="tag">
+            <h1 class="container">Atualizar Curso</h1>
         </header>
 
        <div class="container py-3">
-            <form action="../../aluno-create">
-				<div class="form-group mb-3">
-                        <label htmlFor="CPF" class="form-label">
-                            CPF
-                        </label>
-                        <input type="text" id="CPF" name="CPF"
-                         class="form-control" placeholder="Insira o CPF" value="" />
-                    </div>
-                     <div class="form-group mb-3">
-                        <label htmlFor="email" class="form-label">
-                            E-mail
-                        </label>
-                        <input type="text" id="Email" name="email" class="form-control" placeholder=" Insira o email" value="" />
-                    </div>
+            <form action="./curso-update">
+            <input type="hidden" id="id" name="id" class="form-control" value="${curso.id}" />
+<!-- 	            <div class="form-group mb-3"> -->
+<!-- 	                <label for="nome" class="form-label"> -->
+<!-- 	                    id -->
+<!-- 	                </label> -->
+<%-- 	                <input type="text" id="id" name="id" class="form-control" value="${Curso.id}" readonly/> --%>
+<!-- 	            </div> -->
 	            <div class="form-group mb-3">
-                        <label htmlFor="Nome" class="form-label">
-                            Nome
+                        <label htmlFor="curso" class="form-label">
+                            Curso
                         </label>
-                        <input type="text" id="nome" name="nome"
-                         class="form-control" placeholder="Insira o nome" value="" />
+                        <input type="text" id="curso" name="curso" class="form-control" placeholder="Insira o Curso" value="${curso.curso}" />
                     </div>
                     <div class="form-group mb-3">
-                        <label htmlFor="Senha" class="form-label">
-                            Senha
+                        <label htmlFor="data_Curso" class="form-label">
+                           Data do curso
                         </label>
-                        <input type="password" id="Senha" name="senha" class="form-control" placeholder="Insira a senha" value="" />
+                        <input type="text" id="data_Curso" name="data_Curso" class="form-control" placeholder=" Insira o email" value="${curso.data_Curso}" />
                     </div>
-
                     <button type="submit" class="btn btn-primary">
                         Enviar
                     </button>
-                    <a href="../../aluno" class="btn btn-danger" style="margin-left: 10px">
+                    <a href="./curso" class="btn btn-danger" style="margin-left: 10px">
                         Cancelar
                     </a>
                 </fieldset>
             </form>
         </div>
+        <br><br>
+
     <footer>
         <div class="footer-info">
             <div class="contact-info">

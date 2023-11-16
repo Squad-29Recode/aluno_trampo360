@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
+
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -5,20 +9,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-   <link rel="stylesheet" type="text/css" href="../../assets/css/index.css"/>
+   <link rel="stylesheet" type="text/css" href="./assets/css/index.css"/>
  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-<title>Trampo 360::Criar Aluno</title>     
+<title>Trampo 360 :: Escolha</title>     
     
 </head>
 
-<body>
-    <!--Começo Nav bar---->
-
-    <main>
+<main>
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand active" href="index.html">
-                <img src="../../assets/img/logo.stext.png" width="60" height="50" class="d-inline-block align-top" alt="">
+                <img src="./assets/img/logo.stext.png" width="60" height="50" class="d-inline-block align-top" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -27,7 +28,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                     <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="./aluno">Aluno</a>
                     </li>
                     <li class="nav-item">
@@ -52,49 +53,56 @@
             </div>
         </div>
     </nav>
+		<header class="tag">
+			<h1 class="container">Escolha</h1>
+		</header>
 
-     <header class="tag">
-            <h1 class="container">Criar Aluno</h1>
-        </header>
+		<section class="container">
 
-       <div class="container py-3">
-            <form action="../../aluno-create">
-				<div class="form-group mb-3">
-                        <label htmlFor="CPF" class="form-label">
-                            CPF
-                        </label>
-                        <input type="text" id="CPF" name="CPF"
-                         class="form-control" placeholder="Insira o CPF" value="" />
-                    </div>
-                     <div class="form-group mb-3">
-                        <label htmlFor="email" class="form-label">
-                            E-mail
-                        </label>
-                        <input type="text" id="Email" name="email" class="form-control" placeholder=" Insira o email" value="" />
-                    </div>
-	            <div class="form-group mb-3">
-                        <label htmlFor="Nome" class="form-label">
-                            Nome
-                        </label>
-                        <input type="text" id="nome" name="nome"
-                         class="form-control" placeholder="Insira o nome" value="" />
-                    </div>
-                    <div class="form-group mb-3">
-                        <label htmlFor="Senha" class="form-label">
-                            Senha
-                        </label>
-                        <input type="password" id="Senha" name="senha" class="form-control" placeholder="Insira a senha" value="" />
-                    </div>
+			<div class="py-4">
 
-                    <button type="submit" class="btn btn-primary">
-                        Enviar
-                    </button>
-                    <a href="../../aluno" class="btn btn-danger" style="margin-left: 10px">
-                        Cancelar
-                    </a>
-                </fieldset>
-            </form>
-        </div>
+				<a href="./views/escolha/create.jsp" class="btn btn-warning mb-2 botao1"> Nova Escolha </a>
+
+				<table class="table table-responsive table-hover">
+					<thead class="table-dark">
+
+						<tr>
+
+							<th scope="col">Id_Escolha</th>
+							<th scope="col">Data_Escolha</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Id_Aluno</th>
+							<th scope="col">Id_Curso</th>
+							<th scope="col">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+					<jstl:forEach items="${listaEscolha}" var="e">
+							<tr>
+								<td>${e.id}</td>
+								<td>${e.data_Escolha}</td>
+								<td>${e.nome}</td>
+								<td>${e.aluno.id}</td>
+								<td>${e.curso.id}</td>
+								<td>
+
+								<div class="d-flex">
+										<a href="escolha-edit?id=${e.id}" class="mx-1" title="Editar">
+											<i class="ri-file-edit-line"></i>
+										</a> 
+										<a href="escolha-delete?id=${e.id}" class="mx-1" title="Cancelar"
+											onclick="return confirm('Deseja excluir a escolha?')">
+											<i class="ri-delete-bin-2-line"></i>
+										</a>
+									</div>
+						        </td>
+						</tr>
+						</jstl:forEach>
+					</tbody>
+				</table>
+				</div>
+		</section>
     <footer>
         <div class="footer-info">
             <div class="contact-info">
@@ -129,4 +137,4 @@
         crossorigin="anonymous"></script>
 </body>
 
-</html>
+</html></html>

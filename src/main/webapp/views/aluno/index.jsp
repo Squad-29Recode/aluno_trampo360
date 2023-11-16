@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
    <link rel="stylesheet" type="text/css" href="./assets/css/index.css"/>
  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-<title>Trampo 360::Aluno</title>     
+<title>Trampo 360 :: Aluno</title>     
     
 </head>
 
@@ -32,7 +32,7 @@
                         <a class="nav-link" href="./aluno">Aluno</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./">Curso</a>
+                        <a class="nav-link" href="./curso">Curso</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="./vaga">Vaga</a>
@@ -41,13 +41,13 @@
                         <a class="nav-link" href="./evento">Evento</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./escolhe">Escolhe</a>
+                        <a class="nav-link" href="./escolha">Escolha</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./eval">Evento/Aluno</a>
+                        <a class="nav-link" href="./">Aquisição</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./vaal">Vaga/Aluno</a>
+                        <a class="nav-link" href="./">Inscrição</a>
                     </li>
                 </ul>
             </div>

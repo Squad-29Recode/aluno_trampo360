@@ -26,11 +26,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                     <li class="nav-item">
                         <a class="nav-link" href="./aluno">Aluno</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./">Curso</a>
+                        <a class="nav-link" href="./curso">Curso</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="./vaga">Vaga</a>
@@ -39,13 +39,13 @@
                         <a class="nav-link" href="./evento">Evento</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./escolhe">Escolhe</a>
+                        <a class="nav-link" href="./escolha">Escolha</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./eval">Evento/Aluno</a>
+                        <a class="nav-link" href="./">Aquisição</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./vaal">Vaga/Aluno</a>
+                        <a class="nav-link" href="./">Inscrição</a>
                     </li>
                 </ul>
             </div>

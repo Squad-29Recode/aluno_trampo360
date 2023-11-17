@@ -11,29 +11,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.AlunoDAO;
-import dao.CursoDAO;
-import dao.EscolhaDAO;
+import dao.AquisicaoDAO;
+import dao.EventoDAO;
 import model.Aluno;
-import model.Curso;
+import model.Aquisicao;
 import model.Escolha;
+import model.Evento;
 
-@WebServlet(urlPatterns = {"/escolha", "/escolha-save", "/escolha-delete", "/escolha-edit"})
-public class EscolhaServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/aquisicao", "/aquisicao-save", "/aquisicao-delete", "/aquisicao-edit"})
+public class AquisicaoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     Aluno aluno = new Aluno();
     AlunoDAO adao = new AlunoDAO();
-    EscolhaDAO esdao = new EscolhaDAO();
-    CursoDAO cdao = new CursoDAO();
-    Curso curso = new Curso();//acrescentou null 2x...
+    AquisicaoDAO aqdao = new AquisicaoDAO();
+    EventoDAO edao = new EventoDAO();
+    Evento evento = new Evento(0, 0, null, null);//acrescentou null 2x...
 
-    public EscolhaServlet() {
+    public AquisicaoServlet() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-List<Curso> curso = cdao.read();
-request.setAttribute("listaCurso", curso);
+List <Evento> evento = edao.read();
+request.setAttribute("listaEvento", evento);
 List <Aluno> aluno = adao.read();
 request.setAttribute("listaAluno", aluno);      
 
@@ -59,56 +60,56 @@ String route = request.getServletPath();
         }
     }
     protected void aquisicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	RequestDispatcher rd=request.getRequestDispatcher("./escolha.jsp");
+    	RequestDispatcher rd=request.getRequestDispatcher("./aquisicao.jsp");
         rd.forward(request, response);
     
     }
         protected void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        	Escolha escolha = new Escolha();
+        	Aquisicao aquisicao = new Aquisicao();
             int idaluno = Integer.parseInt(request.getParameter("aluno")); 
-            int idCurso = Integer.parseInt(request.getParameter("curso"));
-            escolha.setAluno(adao.readById(idaluno));  
-            escolha.setCurso(cdao.readById(idCurso));              
+            int idevento = Integer.parseInt(request.getParameter("evento"));
+            aquisicao.setId_Aluno(adao.readById(idaluno));  
+            aquisicao.setid_Evento(edao.readById(idevento));              
            
             
-            escolha.setData_Escolha(request.getParameter("data_Escolha"));
-            escolha.setNome(request.getParameter("nome"));
+            aquisicao.setdata_Aquisicao(request.getParameter("data_aquisicao"));
+            aquisicao.setNome(request.getParameter("nome"));
             
             if(request.getParameter("id")!=null){
-            	escolha.setId_Curso(Integer.parseInt(request.getParameter("id")));
-                esdao.update(escolha);
+            	aquisicao.setid_Evento(idevento);
+                aqdao.update(aquisicao);
 
             }else {
-                esdao.create(escolha);
+                aqdao.creat(aquisicao);
             }
-            response.sendRedirect("escolha");
+            response.sendRedirect("aquisicao");
 
         }
 
         protected void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            List<Escolha>escolha = esdao.read();
-            request.setAttribute("escolha", escolha);
-            RequestDispatcher rd=request.getRequestDispatcher("./escolha.jsp");
+            List<Aquisicao>aquisicao = aqdao.read();
+            request.setAttribute("aquisicao", aquisicao);
+            RequestDispatcher rd=request.getRequestDispatcher("./aquisicao.jsp");
             rd.forward(request, response);
             }
 
         protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
             int id = Integer.parseInt(request.getParameter("id"));
-            esdao.delete(id);// mudou de aqdao para...
-            response.sendRedirect("./escolha");
+            AquisicaoDAO.delete(id);// mudou de aqdao para...
+            response.sendRedirect("./aquisicao");
             
     }
         protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     		int id = Integer.parseInt(request.getParameter("id"));
     		
-    		Escolha escolha = esdao.readById(id);
+    		Aquisicao aquisicao = aqdao.readById(id);
     		
-    		request.setAttribute("escolha", escolha);
+    		request.setAttribute("aquisicao", aquisicao);
 
-    		RequestDispatcher rd = request.getRequestDispatcher("./editescolha.jsp");
+    		RequestDispatcher rd = request.getRequestDispatcher("./editAquisicao.jsp");
     		rd.forward(request, response);
     	
     	    	

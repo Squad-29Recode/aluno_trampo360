@@ -11,45 +11,45 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.AlunoDAO;
-import dao.CursoDAO;
-import dao.EscolhaDAO;
+import dao.InscricaoDAO;
+import dao.VagaDAO;
 import model.Aluno;
-import model.Curso;
-import model.Escolha;
+import model.Inscricao;
+import model.Vaga;
 
-@WebServlet(urlPatterns = {"/escolha", "/escolha-save", "/escolha-delete", "/escolha-edit"})
-public class EscolhaServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/inscricao", "/inscricao-save", "/inscricao-delete", "/inscricao-edit"})
+public class InscricaoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     Aluno aluno = new Aluno();
     AlunoDAO adao = new AlunoDAO();
-    EscolhaDAO esdao = new EscolhaDAO();
-    CursoDAO cdao = new CursoDAO();
-    Curso curso = new Curso();//acrescentou null 2x...
+    InscricaoDAO idao = new InscricaoDAO();
+    VagaDAO vdao = new VagaDAO();
+    Vaga vaga = new Vaga();
 
-    public EscolhaServlet() {
+    public InscricaoServlet() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-List<Curso> curso = cdao.read();
-request.setAttribute("listaCurso", curso);
+List<Vaga> vaga = vdao.read();
+request.setAttribute("listaVaga", vaga);
 List <Aluno> aluno = adao.read();
 request.setAttribute("listaAluno", aluno);      
 
 String route = request.getServletPath();
         switch (route) {
                
-        case "/aquisicao":
+        case "/inscricao":
             read(request,response);
             break;
-        case "/aquisicao-save":
+        case "/inscricao-save":
             save(request,response);
             break;
-        case "/aquisicao-delete":
+        case "/inscricao-delete":
             delete(request,response);
             break;
-        case "/aquisicao-edit":
+        case "/inscricao-edit":
 			edit(request, response);
 			break;
 		             
@@ -59,56 +59,56 @@ String route = request.getServletPath();
         }
     }
     protected void aquisicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	RequestDispatcher rd=request.getRequestDispatcher("./escolha.jsp");
+    	RequestDispatcher rd=request.getRequestDispatcher("./inscricao.jsp");
         rd.forward(request, response);
     
     }
         protected void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        	Escolha escolha = new Escolha();
+        	Inscricao inscricao = new Inscricao();
             int idaluno = Integer.parseInt(request.getParameter("aluno")); 
-            int idCurso = Integer.parseInt(request.getParameter("curso"));
-            escolha.setAluno(adao.readById(idaluno));  
-            escolha.setCurso(cdao.readById(idCurso));              
+            int idvaga = Integer.parseInt(request.getParameter("vaga"));
+            inscricao.setAluno(adao.readById(idaluno));  
+            inscricao.setVaga(vdao.readById(idvaga));              
            
             
-            escolha.setData_Escolha(request.getParameter("data_Escolha"));
-            escolha.setNome(request.getParameter("nome"));
+            inscricao.setData_Inscricao(request.getParameter("data_Inscricao"));
+            inscricao.setNome(request.getParameter("nome"));
             
             if(request.getParameter("id")!=null){
-            	escolha.setId_Curso(Integer.parseInt(request.getParameter("id")));
-                esdao.update(escolha);
+            	inscricao.setId_Inscricao(Integer.parseInt(request.getParameter("id")));
+                idao.update(inscricao);
 
             }else {
-                esdao.create(escolha);
+                idao.create(inscricao);
             }
-            response.sendRedirect("escolha");
+            response.sendRedirect("inscricao");
 
         }
 
         protected void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            List<Escolha>escolha = esdao.read();
-            request.setAttribute("escolha", escolha);
-            RequestDispatcher rd=request.getRequestDispatcher("./escolha.jsp");
+            List<Inscricao>inscricao = idao.read();
+            request.setAttribute("inscricao", inscricao);
+            RequestDispatcher rd=request.getRequestDispatcher("./inscricao.jsp");
             rd.forward(request, response);
             }
 
         protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
             int id = Integer.parseInt(request.getParameter("id"));
-            esdao.delete(id);// mudou de aqdao para...
-            response.sendRedirect("./escolha");
+            idao.delete(id);// mudou de aqdao para...
+            response.sendRedirect("./inscricao");
             
     }
         protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     		int id = Integer.parseInt(request.getParameter("id"));
     		
-    		Escolha escolha = esdao.readById(id);
+    		Inscricao inscricao = idao.readById(id);
     		
-    		request.setAttribute("escolha", escolha);
+    		request.setAttribute("inscricao", inscricao);
 
-    		RequestDispatcher rd = request.getRequestDispatcher("./editescolha.jsp");
+    		RequestDispatcher rd = request.getRequestDispatcher("./editinscricao.jsp");
     		rd.forward(request, response);
     	
     	    	

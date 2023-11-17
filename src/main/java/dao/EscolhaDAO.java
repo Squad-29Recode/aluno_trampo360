@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.ConnectionMySQL;
-import modelos.Escolha;
-import modelos.Aluno;
-import modelos.Curso;
+import model.Escolha;
+import model.Aluno;
+import model.Curso;
 
 public class EscolhaDAO {
 
@@ -28,8 +28,8 @@ public class EscolhaDAO {
 				
 				pstm.setString(1, escolha.getData_Escolha());
 				pstm.setString(2, escolha.getNome());
-				pstm.setInt(3, escolha.getAluno().getId());
-				pstm.setInt(4, escolha.getCurso().getId());
+				pstm.setInt(3, escolha.getId_Aluno());
+				pstm.setInt(4, escolha.getId_Curso());
 
 								pstm.execute();
 				
@@ -153,8 +153,8 @@ public class EscolhaDAO {
 		}
 		
 		//DELETE
-		public void delete (int id_Escolha) {
-			String sql = "DELETE FROM escolha WHERE id_Escolha = ?";
+		public static void delete (int id_Escolha) {
+			String sql = "DELETE FROM escolha WHERE id_escolha = ?";
 
 			Connection conn = null;
 			PreparedStatement pstm = null;

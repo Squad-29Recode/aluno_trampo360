@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.ConnectionMySQL;
-import model.Aluno;
+import model.Aquisicao;
 
-public class AlunoDAO {
+public class AquisicaoDAO {
 	
 	//CREATE
-	public void create (Aluno aluno) {
-		String sql = "insert into aluno (CPF, email, nome, senha) values (?, ?, ?, ?)";
+	public void creat (Aquisicao aquisicao) {
+		String sql = "insert into Aquisicao (data_Aquisicao, nome, id_Evento, id_Aluno) values (?, ?, ?, ?)";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -22,10 +22,10 @@ public class AlunoDAO {
 			conn = ConnectionMySQL.createConnectionMySQL();
 			pstm = conn.prepareStatement(sql);
 			
-			pstm.setString(1, aluno.getCPF());
-			pstm.setString(2, aluno.getEmail());
-			pstm.setString(3, aluno.getNome());
-			pstm.setString(4, aluno.getSenha());
+			pstm.setString(1, aquisicao.getdata_Aquisicao());
+			pstm.setString(2, aquisicao.getNome());
+			pstm.setInt(3, aquisicao.getid_Evento());
+			pstm.setInt(4, aquisicao.getId_Aluno());
 			
 			pstm.execute();
 			
@@ -51,9 +51,9 @@ public class AlunoDAO {
 	}
 
 	//READ
-		public List <Aluno> read(){
-			List<Aluno> alunos = new ArrayList<Aluno>();
-			String sql = "select * from aluno";
+		public List <Aquisicao> read(){
+			List<Aquisicao> aquisicaos = new ArrayList<Aquisicao>();
+			String sql = "select * from aquisicao";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -66,14 +66,13 @@ public class AlunoDAO {
 			rset = pstm.executeQuery();
 			
 			while (rset.next()) {
-				Aluno aluno = new Aluno();
-				aluno.setId (rset.getInt("id_Aluno"));
-				aluno.setCPF (rset.getString("CPF"));
-				aluno.setEmail (rset.getString("email"));
-				aluno.setNome (rset.getString("nome"));
-				aluno.setSenha (rset.getString("senha"));
+				Aquisicao aquisicao = new Aquisicao();
+				aquisicao.setdata_Aquisicao (rset.getString("data_Aquisicao"));
+				aquisicao.setNome(rset.getString("nome"));
+				aquisicao.setid_Evento(rset.getInt("id_Evento"));
+				aquisicao.setId_Aluno(rset.getInt("id_Aluno"));
 				
-				alunos.add(aluno);
+				((List<Aquisicao>) aquisicao).add(aquisicao);
 			}
 		
 	} catch (Exception e) {
@@ -95,12 +94,12 @@ public class AlunoDAO {
 			 }
 }
 		
-		return alunos;
+		return aquisicaos;
 	}
 	
 	//UPDATE
-	public void update (Aluno aluno) {
-		String sql = "UPDATE aluno SET CPF = ?,  email = ?, nome = ?, senha = ? WHERE id_Aluno = ?";
+	public void update (Aquisicao aquisicao) {
+		String sql = "UPDATE aquisicao SET data_Aquisicao = ?,  nome = ?, id_Evento = ?, id_Aluno = ? WHERE id_Aquisicao = ?";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -110,12 +109,12 @@ public class AlunoDAO {
 			
 			pstm = conn.prepareStatement(sql);
 			
-			pstm.setString(1, aluno.getCPF());
-			pstm.setString(2, aluno.getEmail());
-			pstm.setString(3, aluno.getNome());
-			pstm.setString(4, aluno.getSenha());
+			pstm.setString(1, aquisicao.getdata_Aquisicao());
+			pstm.setString(2, aquisicao.getNome());
+			pstm.setInt(3, aquisicao.getid_Evento());
+			pstm.setInt(4, aquisicao.getId_Aluno());
 			
-			pstm.setInt(5, aluno.getId());
+			pstm.setInt(5, aquisicao.getId_Aquisicao());
 			
 			pstm.execute();
 		
@@ -140,8 +139,8 @@ public class AlunoDAO {
 	} 
 	
 	//DELETE
-	public void delete (int id_Aluno) {
-	String sql = "DELETE FROM aluno WHERE id_Aluno = ?";
+	public static void delete (int id_Aquisicao) {
+	String sql = "DELETE FROM aquisicao WHERE id_Aquisicao = ?";
 	
 	Connection conn = null;
 	PreparedStatement pstm = null;
@@ -151,7 +150,7 @@ public class AlunoDAO {
 		
 		pstm = conn.prepareStatement(sql);
 		
-		pstm.setInt(1, id_Aluno);
+		pstm.setInt(1, id_Aquisicao);
 		
 		pstm.execute();
 	
@@ -176,9 +175,9 @@ public class AlunoDAO {
 	}
 	}
 	//readById
-	public Aluno readById (int id_Aluno) {
-		Aluno aluno = new Aluno();
-		String sql = "select * from aluno WHERE id_Aluno= ?";
+	public Aquisicao readById (int id_Aquisicao) {
+		Aquisicao aquisicao = new Aquisicao();
+		String sql = "select * from aquisicao WHERE id_Aquisicao= ?";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -189,17 +188,16 @@ public class AlunoDAO {
 			
 			pstm = conn.prepareStatement(sql);
 			
-			pstm.setInt(1, id_Aluno);
+			pstm.setInt(1, id_Aquisicao);
 			
 			rset = pstm.executeQuery();
 			
 			rset.next();
 			
-			aluno.setId(rset.getInt("id_Aluno"));
-			aluno.setCPF(rset.getString("CPF"));
-			aluno.setEmail(rset.getString("email"));
-			aluno.setNome(rset.getString("nome"));
-			aluno.setSenha(rset.getString("senha"));
+			aquisicao.setdata_Aquisicao (rset.getString("data_Aquisicao"));
+			aquisicao.setNome (rset.getString("nome"));
+			aquisicao.setid_Evento (rset.getInt("id_Evento"));
+			aquisicao.setId_Aluno (rset.getInt("id_Aluno"));
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -219,6 +217,7 @@ public class AlunoDAO {
 					 e.printStackTrace();
 				 }
 	    }
-		return aluno;
+		return aquisicao;
 		}
 	}
+

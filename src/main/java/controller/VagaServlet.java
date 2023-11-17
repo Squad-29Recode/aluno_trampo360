@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.AlunoDAO;
-import model.Aluno;
+import dao.VagaDAO;
+import model.Vaga;
 
-@WebServlet(urlPatterns = {"/aluno", "/aluno-save", "/aluno-delete", "/aluno-edit", "/aluno-update"})
-public class AlunoServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/vaga", "/vaga-save", "/vaga-delete", "/vaga-edit", "/vaga-update"})
+public class VagaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-	AlunoDAO adao = new AlunoDAO();
+	VagaDAO vdao = new VagaDAO();
 
 
-	private Aluno aluno;
+	private Vaga vaga;
 
-    public AlunoServlet() {
+    public VagaServlet() {
         super();
     }
 
@@ -31,19 +31,19 @@ public class AlunoServlet extends HttpServlet {
 
         String route = request.getServletPath();
         switch (route) {
-        case "/aluno":
+        case "/vaga":
             read(request,response);
             break;
-        case "/aluno-save":
+        case "/vaga-save":
             save(request,response);
             break;
-        case "/aluno-delete":
+        case "/vaga-delete":
             delete(request,response);
             break;
-       case "/aluno-edit":
+       case "/vaga-edit":
 			edit(request, response);
 			break;
-		case "/aluno-update":
+		case "/vaga-update":
 			update(request, response);
 			break;
         default:
@@ -55,59 +55,55 @@ public class AlunoServlet extends HttpServlet {
  
     protected void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Aluno aluno = new Aluno();
-        aluno.setCPF(request.getParameter("CPF"));
-        aluno.setEmail(request.getParameter("email"));
-        aluno.setNome(request.getParameter("nome"));
-        aluno.setSenha(request.getParameter("senha"));
+    	Vaga vaga = new Vaga();
+        vaga.setdata_Vaga(request.getParameter("data_Vaga"));
+        vaga.setNome(request.getParameter("nome"));
         
         if(request.getParameter("id")!=null){
-        	aluno.setId(Integer.parseInt(request.getParameter("id")));
-            adao.update(aluno);
+        	vaga.setId_Vaga(Integer.parseInt(request.getParameter("id")));
+            vdao.update(vaga);
 
         }else {
-            adao.create(aluno);
+            vdao.create(vaga);
         }
-        response.sendRedirect("aluno");
+        response.sendRedirect("vaga");
     }
     protected void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Aluno>aluno = adao.read();
-        request.setAttribute("aluno", aluno);
-        RequestDispatcher rd=request.getRequestDispatcher("./views/aluno/aluno.jsp");
+        List<Vaga>vaga = vdao.read();
+        request.setAttribute("vaga", vaga);
+        RequestDispatcher rd=request.getRequestDispatcher("./vaga.jsp");
         rd.forward(request, response);
         }
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
-        adao.delete(id);
-        response.sendRedirect("aluno");
+        vdao.delete(id);
+        response.sendRedirect("vaga");
     }
 
 
 	protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		Aluno aluno = adao.readById(id);
+		Vaga vaga = vdao.readById(id);
 		
-		request.setAttribute("aluno", aluno);
+		request.setAttribute("vaga", vaga);
 
-		RequestDispatcher rd = request.getRequestDispatcher("./views/aluno/editAluno.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./editVaga.jsp");
 		rd.forward(request, response);
 	
 	}
 	protected void update(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		aluno = null;
-		aluno.setId(Integer.parseInt(request.getParameter("id")));
-		aluno.setCPF(request.getParameter("CPF"));
-		aluno.setNome(request.getParameter("nome"));
-		aluno.setEmail(request.getParameter("email"));
-		aluno.setSenha(request.getParameter("senha"));
+		vaga = null;
+		vaga.setId_Vaga(Integer.parseInt(request.getParameter("id")));
+		vaga.setdata_Vaga(request.getParameter("data"));
+		vaga.setNome(request.getParameter("nome"));
 		
-		adao.update(aluno);
-		response.sendRedirect("aluno");
+		vdao.update(vaga);
+		response.sendRedirect("vaga");
 	}
 	
 	}

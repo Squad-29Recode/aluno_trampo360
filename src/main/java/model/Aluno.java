@@ -1,4 +1,4 @@
-package modelos;
+package model;
 
 public class Aluno {
 
@@ -76,5 +76,7 @@ public class Aluno {
 	public String toString() {
 		return "Aluno [id_Aluno=" + id_Aluno + ", CPF=" + CPF + ", email=" + email + ", nome=" + nome + ", senha=" + senha + "]";
 	}
+
+	
 		
 }

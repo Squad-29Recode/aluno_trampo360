@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.ConnectionMySQL;
-import modelos.Curso;
+import model.Curso;
 
 public class CursoDAO {
 	

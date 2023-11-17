@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -10,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
    <link rel="stylesheet" type="text/css" href="./assets/css/index.css"/>
  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-<title>Trampo 360 :: Escolha</title>     
+<title>Trampo 360::Atualizar Aluno</title>     
     
 </head>
 
@@ -28,71 +27,81 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="../../aluno">Aluno</a>
+                        <a class="nav-link" href="./aluno">Aluno</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../curso">Curso</a>
+                        <a class="nav-link" href="./">Curso</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="../../vaga">Vaga</a>
+                        <a class="nav-link " href="./vaga">Vaga</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../evento">Evento</a>
+                        <a class="nav-link" href="./evento">Evento</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="../../escolha">Escolha</a>
+                        <a class="nav-link" href="./escolhe">Escolhe</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./">Aquisição</a>
+                        <a class="nav-link" href="./eval">Evento/Aluno</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./">Inscrição</a>
+                        <a class="nav-link" href="./vaal">Vaga/Aluno</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
         <header class="tag">
-            <h1 class="container">Atualizar Escolha</h1>
+            <h1 class="container">Atualizar Aluno</h1>
         </header>
 
-     <div class="container py-3">
-           <form action="./escolha-update">
-           		<input type="hidden" id="id" name="id" class="form-control" value="${escolha.id}" />
-				<div class="form-group mb-3">
-					<label for="data" class="form-label"> Data </label> <input
-						type="text" id="data_Escolha" name="data" class="form-control" value="${escolha.data_Escolha}" />
-				</div>
-				<div class="form-group mb-3">
-					<label for="nome" class="form-label"> Nome </label> <input
-						type="text" id="nome" name="nome" class="form-control" value="${escolha.nome}" />
-				</div>
+       <div class="container py-3">
+            <form action="./aluno-update">
+            <input type="hidden" id="id" name="id" class="form-control" value="${aluno.id}" />
+<!-- 	            <div class="form-group mb-3"> -->
+<!-- 	                <label for="nome" class="form-label"> -->
+<!-- 	                    id -->
+<!-- 	                </label> -->
+<%-- 	                <input type="text" id="id" name="id" class="form-control" value="${Aluno.id}" readonly/> --%>
+<!-- 	            </div> -->
+	            <div class="form-group mb-3">
+                        <label htmlFor="CPF" class="form-label">
+                            CPF
+                        </label>
+                        <input type="text" id="CPF" name="CPF" class="form-control" placeholder="Insira o CPF" value="${aluno.CPF}" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label htmlFor="email" class="form-label">
+                            E-mail
+                        </label>
+                        <input type="text" id="Email" name="email" class="form-control" placeholder=" Insira o email" value="${aluno.email}" />
+                    </div>
+                     <div class="form-group mb-3">
+                        <label htmlFor="Nome" class="form-label">
+                            Nome
+                        </label>
+                        <input type="text" id="nome" name="nome"
+                         class="form-control" placeholder="Insira o nome" value="${aluno.nome}"/>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label htmlFor="Senha" class="form-label">
+                            Senha
+                        </label>
+                        <input type="password" id="Senha" name="senha" class="form-control" placeholder="Insira a senha" value="${aluno.senha}" />
+                    </div>
 
-				<div class="form-group mb-3">
-					<label for="aluno" class="form-label"> Aluno </label> 
-					<select id="aluno" name="aluno" class="form-control">
-						<option value="${escolha.aluno.nome}">${escolha.aluno.nome}</option>
-						<jstl:forEach items="${listaAluno}" var="a">
-							<option value="${a.id}">${a.nome}</option>
-						</jstl:forEach>
-					</select>
-				</div>
-				<div class="form-group mb-3">
-					<label for="curso" class="form-label"> Curso </label> 
-					<select id="curso" name="curso" class="form-control">
-						<option value="${escolha.curso.curso}">${escolha.curso.curso}</option>
-						<jstl:forEach items="${listaCurso}" var="c">
-							<option value="${c.id}">${c.curso}</option>
-						</jstl:forEach>
-					</select>
-				</div>
-		<button type="submit" class="btn btn-primary">Enviar</button>
-				<a href="./escolha" class="btn btn-danger"
-					style="margin-left: 10px"> Cancelar </a>
-			</form>
+                    <button type="submit" class="btn btn-primary">
+                        Enviar
+                    </button>
+                    <a href="./aluno" class="btn btn-danger" style="margin-left: 10px">
+                        Cancelar
+                    </a>
+                </fieldset>
+            </form>
         </div>
-  <br><br>
-                <footer>
+        <br><br>
+
+    <footer>
         <div class="footer-info">
             <div class="contact-info">
 

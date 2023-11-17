@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -11,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
    <link rel="stylesheet" type="text/css" href="./assets/css/index.css"/>
  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-<title>Trampo 360 :: Curso</title>     
+<title>Trampo 360::Atualizar Aluno</title>     
     
 </head>
 
@@ -32,7 +30,7 @@
                         <a class="nav-link" href="./aluno">Aluno</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./curso">Curso</a>
+                        <a class="nav-link" href="./">Curso</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="./vaga">Vaga</a>
@@ -41,67 +39,68 @@
                         <a class="nav-link" href="./evento">Evento</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./escolha">Escolha</a>
+                        <a class="nav-link" href="./escolhe">Escolhe</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./">Aquisição</a>
+                        <a class="nav-link" href="./eval">Evento/Aluno</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./">Inscrição</a>
+                        <a class="nav-link" href="./vaal">Vaga/Aluno</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-		<header class="tag">
-			<h1 class="container">Curso</h1>
-		</header>
+        <header class="tag">
+            <h1 class="container">Atualizar Aluno</h1>
+        </header>
 
-		<section class="container">
+       <div class="container py-3">
+            <form action="./aluno-update">
+            <input type="hidden" id="id" name="id" class="form-control" value="${aluno.id}" />
+<!-- 	            <div class="form-group mb-3"> -->
+<!-- 	                <label for="nome" class="form-label"> -->
+<!-- 	                    id -->
+<!-- 	                </label> -->
+<%-- 	                <input type="text" id="id" name="id" class="form-control" value="${Aluno.id}" readonly/> --%>
+<!-- 	            </div> -->
+	            <div class="form-group mb-3">
+                        <label htmlFor="CPF" class="form-label">
+                            CPF
+                        </label>
+                        <input type="text" id="CPF" name="CPF" class="form-control" placeholder="Insira o CPF" value="${aluno.CPF}" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label htmlFor="email" class="form-label">
+                            E-mail
+                        </label>
+                        <input type="text" id="Email" name="email" class="form-control" placeholder=" Insira o email" value="${aluno.email}" />
+                    </div>
+                     <div class="form-group mb-3">
+                        <label htmlFor="Nome" class="form-label">
+                            Nome
+                        </label>
+                        <input type="text" id="nome" name="nome"
+                         class="form-control" placeholder="Insira o nome" value="${aluno.nome}"/>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label htmlFor="Senha" class="form-label">
+                            Senha
+                        </label>
+                        <input type="password" id="Senha" name="senha" class="form-control" placeholder="Insira a senha" value="${aluno.senha}" />
+                    </div>
 
-			<div class="py-4">
+                    <button type="submit" class="btn btn-primary">
+                        Enviar
+                    </button>
+                    <a href="./aluno" class="btn btn-danger" style="margin-left: 10px">
+                        Cancelar
+                    </a>
+                </fieldset>
+            </form>
+        </div>
+        <br><br>
 
-				<a href="./views/curso/create.html" class="btn btn-warning mb-2 botao1"> Novo Curso </a>
-
-				<table class="table table-responsive table-hover">
-					<thead class="table-dark">
-
-						<tr>
-
-							<th scope="col">Id_Curso</th>
-							<th scope="col">Curso</th>
-							<th scope="col">Data_Curso</th>
-							<th scope="col">Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-					<jstl:forEach items="${listaCurso}" var="c">
-						<tr>
-
-							<td>${c.id}</td>
-	
-							<td>${c.curso}</td>
-							
-                            <td>${c.data_Curso}</td>
-                            
-							<td>
-								<div class="d-flex">
-										<a href="curso-edit?id=${c.id}" class="mx-1" title="Editar">
-											<i class="ri-file-edit-line"></i>
-										</a> 
-										<a href="curso-delete?id=${c.id}" class="mx-1" title="Cancelar"
-											onclick="return confirm('Deseja excluir o curso ${c.curso}?')">
-											<i class="ri-delete-bin-2-line"></i>
-										</a>
-									</div>
-						        </td>
-						</tr>
-						</jstl:forEach>
-					</tbody>
-				</table>
-				</div>
-		</section>
     <footer>
         <div class="footer-info">
             <div class="contact-info">

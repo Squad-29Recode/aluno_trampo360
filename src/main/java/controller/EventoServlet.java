@@ -10,20 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.AlunoDAO;
+import dao.EventoDAO;
 import model.Aluno;
+import model.Evento;
 
-@WebServlet(urlPatterns = {"/aluno", "/aluno-save", "/aluno-delete", "/aluno-edit", "/aluno-update"})
-public class AlunoServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/evento", "/evento-save", "/evento-delete", "/evento-edit", "/evento-update"})
+public class EventoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-	AlunoDAO adao = new AlunoDAO();
+	EventoDAO edao = new EventoDAO();
 
 
-	private Aluno aluno;
+	private Evento evento;
 
-    public AlunoServlet() {
+    public EventoServlet() {
         super();
     }
 
@@ -31,19 +32,19 @@ public class AlunoServlet extends HttpServlet {
 
         String route = request.getServletPath();
         switch (route) {
-        case "/aluno":
+        case "/evento":
             read(request,response);
             break;
-        case "/aluno-save":
+        case "/evento-save":
             save(request,response);
             break;
-        case "/aluno-delete":
+        case "/evento-delete":
             delete(request,response);
             break;
-       case "/aluno-edit":
+       case "/evento-edit":
 			edit(request, response);
 			break;
-		case "/aluno-update":
+		case "/evento-update":
 			update(request, response);
 			break;
         default:
@@ -55,59 +56,55 @@ public class AlunoServlet extends HttpServlet {
  
     protected void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Aluno aluno = new Aluno();
-        aluno.setCPF(request.getParameter("CPF"));
-        aluno.setEmail(request.getParameter("email"));
-        aluno.setNome(request.getParameter("nome"));
-        aluno.setSenha(request.getParameter("senha"));
+    	Evento evento = new Evento (0, 0, null, null);
+    	evento.setdata_Evento(request.getParameter("data_Evento"));
+    	evento.setnome(request.getParameter("nome"));
         
         if(request.getParameter("id")!=null){
-        	aluno.setId(Integer.parseInt(request.getParameter("id")));
-            adao.update(aluno);
+        	evento.setId_Evento(Integer.parseInt(request.getParameter("id")));
+            edao.update(evento);
 
         }else {
-            adao.create(aluno);
+            edao.create(evento);
         }
-        response.sendRedirect("aluno");
+        response.sendRedirect("evento");
     }
     protected void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Aluno>aluno = adao.read();
-        request.setAttribute("aluno", aluno);
-        RequestDispatcher rd=request.getRequestDispatcher("./views/aluno/aluno.jsp");
+        List<Evento>evento = edao.read();
+        request.setAttribute("evento", evento);
+        RequestDispatcher rd=request.getRequestDispatcher("./evento.jsp");
         rd.forward(request, response);
         }
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
-        adao.delete(id);
-        response.sendRedirect("aluno");
+        edao.delete(id);
+        response.sendRedirect("evento");
     }
 
 
 	protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		Aluno aluno = adao.readById(id);
+		Evento evento = edao.readById(id);
 		
-		request.setAttribute("aluno", aluno);
+		request.setAttribute("evento", evento);
 
-		RequestDispatcher rd = request.getRequestDispatcher("./views/aluno/editAluno.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./editEvento.jsp");
 		rd.forward(request, response);
 	
 	}
 	protected void update(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		aluno = null;
-		aluno.setId(Integer.parseInt(request.getParameter("id")));
-		aluno.setCPF(request.getParameter("CPF"));
-		aluno.setNome(request.getParameter("nome"));
-		aluno.setEmail(request.getParameter("email"));
-		aluno.setSenha(request.getParameter("senha"));
+		evento = null;
+		evento.setId_Evento(Integer.parseInt(request.getParameter("id")));
+		evento.setdata_Evento(request.getParameter("data"));
+		evento.setnome(request.getParameter("nome"));
 		
-		adao.update(aluno);
-		response.sendRedirect("aluno");
+		edao.update(evento);
+		response.sendRedirect("evento");
 	}
 	
 	}

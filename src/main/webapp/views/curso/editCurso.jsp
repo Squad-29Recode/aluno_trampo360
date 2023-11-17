@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
    <link rel="stylesheet" type="text/css" href="./assets/css/index.css"/>
  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-<title>Trampo 360 :: Atualizar Curso</title>     
+<title>Trampo 360::Atualizar Aluno</title>     
     
 </head>
 
@@ -26,11 +26,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                     <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="./aluno">Aluno</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./curso">Curso</a>
+                        <a class="nav-link" href="./">Curso</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="./vaga">Vaga</a>
@@ -39,19 +39,19 @@
                         <a class="nav-link" href="./evento">Evento</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./escolha">Escolha</a>
+                        <a class="nav-link" href="./escolhe">Escolhe</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./">Aquisição</a>
+                        <a class="nav-link" href="./eval">Evento/Aluno</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./">Inscrição</a>
+                        <a class="nav-link" href="./vaal">Vaga/Aluno</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-        <header class="tag">
+                <header class="tag">
             <h1 class="container">Atualizar Curso</h1>
         </header>
 
@@ -86,7 +86,6 @@
             </form>
         </div>
         <br><br>
-
     <footer>
         <div class="footer-info">
             <div class="contact-info">

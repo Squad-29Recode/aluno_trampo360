@@ -1,4 +1,4 @@
-package modelos;
+package model;
 
 public class Escolha {
 	
@@ -13,20 +13,20 @@ public class Escolha {
 	public Escolha() {
 	}
 
-	public Escolha(int id_Escolha, String data_Escolha, String nome, Aluno aluno, Curso curso, int id_Aluno, int id_Curso) {
+	public Escolha(int id_Escolha, String data_Escolha, String nome, int id_Aluno, int id_Curso) {
 		this.id_Escolha = id_Escolha;
 		this.data_Escolha = data_Escolha;
 		this.nome = nome;
 		this.id_Aluno = id_Aluno;
 		this.id_Curso = id_Curso;
-		this.aluno = aluno;
-		this.curso = curso;
 	}
 
 
-	public Escolha(String data_Escolha, String nome) {
+	public Escolha(String data_Escolha, String nome, int id_Aluno , int id_Curso) {
 		this.data_Escolha = data_Escolha;
 		this.nome = nome;
+		this.id_Aluno = id_Aluno;
+		this.id_Curso = id_Curso;
 	}
 
 	public int getId() {
@@ -68,21 +68,11 @@ public class Escolha {
 	public void setId_Curso(int id_Curso) {
 		this.id_Curso = id_Curso;
 	}
-	
+	   public void setAluno(Aluno aluno) {
+	        this.aluno = aluno;
+	    }
 
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-    
-    public Curso getCurso() {
-        return curso;
-    }
-        
-	public void setCurso(Curso curso) {
+	    public void setCurso(Curso curso) {
 	        this.curso = curso;
 	    }
 	

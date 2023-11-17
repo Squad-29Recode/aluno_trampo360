@@ -1,22 +1,20 @@
-<!doctype html>
-<html lang="pt-BR">
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-     <link rel="stylesheet" type="text/css" href="./assets/css/index.css"/>
-
+   <link rel="stylesheet" type="text/css" href="./assets/css/index.css"/>
+ <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<title>Trampo 360::Atualizar Aquisicao</title>     
+    
 </head>
-    
 
-<body>
-    <!--Começo Nav bar---->
-    
-      <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+<main>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand active" href="index.html">
                 <img src="./assets/img/logo.stext.png" width="60" height="50" class="d-inline-block align-top" alt="">
@@ -29,90 +27,68 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="cursos.html">Cursos</a>
+                        <a class="nav-link" href="./aluno">Aluno</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="parcerias.html">Parcerias</a>
+                        <a class="nav-link" href="./">Curso</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="eventos.html">Eventos</a>
+                        <a class="nav-link " href="./vaga">Vaga</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contato.html">Contato</a>
+                        <a class="nav-link" href="./evento">Evento</a>
                     </li>
-                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Login
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="">Entrar</a></li>
-                      <li><a class="dropdown-item" href="./aluno-save">Cadastre-se</a></li>
-                                              </ul>
-                  </li>
-            </ul>
-
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Digite aqui sua busca . . ."
-                        aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Pesquisa</button>
-                </form>
+                     <li class="nav-item">
+                        <a class="nav-link" href="./escolhe">Escolhe</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="./eval">Evento/Aluno</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="./vaal">Vaga/Aluno</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
-    
-    
-    <!--fim Nav bar---->
+        <header class="tag">
+            <h1 class="container">Atualizar Aquisição</h1>
+        </header>
 
-    <body>
-        <div class="text">
-                    <h1>Cadastre-se</h1>
-                    <h4>Que bom que optou por seguir sua jornada conosco!</h4>
-        <h5>Após seu cadastro, você deverá escolher um dos nossos cursos para seguir sua jornada na Trampo360°!</h5>
-        </div>
-    <!-- Formulário -->
-    <div class="form-container">
-      <div class="form-section mb-auto">
-          
-          
-          <!-- Formulário de cadastro aqui -->
-<div class="container py-3">
-            <form action="./aluno-save">
-				<div class="form-group mb-3">
-                        <label htmlFor="CPF" class="form-label">
-                            CPF
-                        </label>
-                        <input type="text" id="CPF" name="CPF"
-                         class="form-control" placeholder="Insira o CPF" value="" />
-                    </div>
-                     <div class="form-group mb-3">
-                        <label htmlFor="email" class="form-label">
-                            E-mail
-                        </label>
-                        <input type="text" id="Email" name="email" class="form-control" placeholder=" Insira o email" value="" />
-                    </div>
+       <div class="container py-3">
+            <form action="./aquisicao-update">
+            <input type="hidden" id="id" name="id" class="form-control" value="${aquisicao.id}" />
+<!-- 	            <div class="form-group mb-3"> -->
+<!-- 	                <label for="nome" class="form-label"> -->
+<!-- 	                    id -->
+<!-- 	                </label> -->
+<%-- 	                <input type="text" id="id" name="id" class="form-control" value="${Aluno.id}" readonly/> --%>
+<!-- 	            </div> -->
 	            <div class="form-group mb-3">
-                        <label htmlFor="Nome" class="form-label">
-                            Nome
+                        <label htmlFor="data_Aquisicao" class="form-label">
+                            Data 
                         </label>
-                        <input type="text" id="nome" name="nome"
-                         class="form-control" placeholder="Insira o nome" value="" />
+                        <input type="text" id="data_Aquisicao" name="data_Aquisicao" class="form-control" placeholder="Insira a data de aquisição" value="${aquisicao.data_Aquisicao}" />
                     </div>
                     <div class="form-group mb-3">
-                        <label htmlFor="Senha" class="form-label">
-                            Senha
+                        <label htmlFor="nome" class="form-label">
+                            nome
                         </label>
-                        <input type="password" id="Senha" name="senha" class="form-control" placeholder="Insira a senha" value="" />
+                        <input type="text" id="nome" name="nome" class="form-control" placeholder=" Insira o nome do evento" value="${aquisicao.nome}" />
                     </div>
+                     
 
                     <button type="submit" class="btn btn-primary">
                         Enviar
                     </button>
-                    <a href="./cadastro.html" class="btn btn-danger" style="margin-left: 10px">
+                    <a href="./aluno" class="btn btn-danger" style="margin-left: 10px">
                         Cancelar
                     </a>
                 </fieldset>
             </form>
         </div>
+        <br><br>
+
     <footer>
         <div class="footer-info">
             <div class="contact-info">
@@ -140,8 +116,8 @@
             <p>&copy; 2023 Trampo360°. Todos os direitos reservados.</p>
         </div>
     </footer>
-<!---fimRodapé-->
-
+    <!---fimRodapé-->
+</main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>

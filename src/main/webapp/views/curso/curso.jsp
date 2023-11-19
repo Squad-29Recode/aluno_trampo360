@@ -15,8 +15,7 @@
     
 </head>
 
-<main>
-<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+ <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand active" href="index.html">
                 <img src="./assets/img/logo.stext.png" width="60" height="50" class="d-inline-block align-top" alt="">
@@ -29,27 +28,33 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="./aluno">Aluno</a>
+                        <a class="nav-link" href="cursos.html">Cursos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./">Curso</a>
+                        <a class="nav-link" href="parcerias.html">Parcerias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="./vaga">Vaga</a>
+                        <a class="nav-link " href="eventos.html">Eventos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./evento">Evento</a>
+                        <a class="nav-link" href="contato.html">Contato</a>
                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="./escolhe">Escolhe</a>
-                    </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="./eval">Evento/Aluno</a>
-                    </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="./vaal">Vaga/Aluno</a>
-                    </li>
-                </ul>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Login
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="">Entrar</a></li>
+                      <li><a class="dropdown-item" href="./curso-save">Cadastre-se</a></li>
+                                              </ul>
+                  </li>
+            </ul>
+
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Digite aqui sua busca . . ."
+                        aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">Pesquisa</button>
+                </form>
             </div>
         </div>
     </nav>

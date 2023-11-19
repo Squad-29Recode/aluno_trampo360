@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -64,12 +65,15 @@
 <!-- 	                </label> -->
 <%-- 	                <input type="text" id="id" name="id" class="form-control" value="${Curso.id}" readonly/> --%>
 <!-- 	            </div> -->
-	            <div class="form-group mb-3">
-                        <label htmlFor="curso" class="form-label">
-                            Curso
-                        </label>
-                        <input type="text" id="curso" name="curso" class="form-control" placeholder="Insira o Curso" value="${curso.curso}" />
-                    </div>
+	          <div class="form-group mb-3">
+					<label for="curso" class="form-label"> Curso </label> 
+					<select id="curso" name="curso" class="form-control">
+						<option value="DEFAULT">Escolha um Curso</option>
+						<jstl:forEach items="${listaCurso}" var="c">
+							<option value="${c.id}">${c.curso}</option>
+						</jstl:forEach>
+					</select>
+				</div>
                     <div class="form-group mb-3">
                         <label htmlFor="data_Curso" class="form-label">
                            Data do curso

@@ -71,12 +71,14 @@ public class AlunoServlet extends HttpServlet {
         response.sendRedirect("aluno");
     }
     protected void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Aluno> lista = adao.read();
 
-        List<Aluno>aluno = adao.read();
-        request.setAttribute("aluno", aluno);
-        RequestDispatcher rd=request.getRequestDispatcher("./views/aluno/aluno.jsp");
-        rd.forward(request, response);
-        }
+		request.setAttribute("listaAluno", lista);
+
+		RequestDispatcher rd = request.getRequestDispatcher("views/aluno/aluno.jsp");
+		rd.forward(request, response);
+
+	}
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
@@ -85,27 +87,26 @@ public class AlunoServlet extends HttpServlet {
     }
 
 
-	protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		
-		Aluno aluno = adao.readById(id);
-		
+    protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id_Aluno = Integer.parseInt(request.getParameter("id"));
+
+		aluno = adao.readById(id_Aluno);
+
 		request.setAttribute("aluno", aluno);
 
-		RequestDispatcher rd = request.getRequestDispatcher("./views/aluno/editAluno.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("views/aluno/editAluno.jsp");
 		rd.forward(request, response);
-	
 	}
+
 	protected void update(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		aluno = null;
+
 		aluno.setId(Integer.parseInt(request.getParameter("id")));
 		aluno.setCPF(request.getParameter("CPF"));
-		aluno.setNome(request.getParameter("nome"));
 		aluno.setEmail(request.getParameter("email"));
+		aluno.setNome(request.getParameter("nome"));
 		aluno.setSenha(request.getParameter("senha"));
-		
+
 		adao.update(aluno);
 		response.sendRedirect("aluno");
 	}

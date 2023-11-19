@@ -70,12 +70,14 @@ public class CursoServlet extends HttpServlet {
         response.sendRedirect("aluno");
     }
     protected void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Curso> lista = cdao.read();
 
-        List<Curso>curso = cdao.read();
-        request.setAttribute("curso", curso);
-        RequestDispatcher rd=request.getRequestDispatcher("./views/curso.jsp");
-        rd.forward(request, response);
-        }
+		request.setAttribute("listaCurso", lista);
+
+		RequestDispatcher rd = request.getRequestDispatcher("views/curso/curso.jsp");
+		rd.forward(request, response);
+
+	}
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
@@ -84,25 +86,24 @@ public class CursoServlet extends HttpServlet {
     }
 
 
-	protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		
-		Curso curso = cdao.readById(id);
-		
+    protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id_Curso = Integer.parseInt(request.getParameter("id"));
+
+		curso = cdao.readById(id_Curso);
+
 		request.setAttribute("curso", curso);
 
-		RequestDispatcher rd = request.getRequestDispatcher("./views/editCurso.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("views/curso/editCurso.jsp");
 		rd.forward(request, response);
-	
 	}
+
 	protected void update(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		curso = null;
+
 		curso.setId(Integer.parseInt(request.getParameter("id")));
 		curso.setCurso(request.getParameter("curso"));
-		curso.setData_Curso(request.getParameter("data"));
-		
+		curso.setData_Curso(request.getParameter("data_Curso"));
+
 		cdao.update(curso);
 		response.sendRedirect("curso");
 	}
